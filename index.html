@@ -767,7 +767,7 @@
           <div class="row"><span class="label" data-en="Email" data-fr="E-mail">Email</span><span class="value">limitedukash@gmail.com</span></div>
           <div class="row"><span class="label" data-en="Hours" data-fr="Horaires">Hours</span><span class="value" data-en="Mon–Fri, 8:00–17:00" data-fr="Lun–Ven, 8h00–17h00">Mon–Fri, 8:00–17:00</span></div>
         </div>
-        <form id="contactForm">
+        <form id="contactForm" action="https://formspree.io/f/xkodzbya" method="POST">
           <div class="form-row">
             <div class="form-field">
               <label for="name" data-en="Full name" data-fr="Nom complet">Full name</label>
@@ -798,7 +798,6 @@
             <input type="email" id="email" name="email" required>
           </div>
           <button type="submit" class="btn btn-primary" data-en="Submit application" data-fr="Soumettre la demande">Submit application</button>
-          <span class="form-note" data-en="This form isn't connected to anything yet — see the note in the code comments for how to wire it up for free with Formspree." data-fr="Ce formulaire n'est pas encore connecté — consultez les commentaires du code pour savoir comment le relier gratuitement à Formspree.">This form isn't connected to anything yet — see the note in the code comments for how to wire it up for free with Formspree.</span>
         </form>
       </div>
     </div>
@@ -826,10 +825,6 @@
   // ---- Bilingual toggle (EN / FR) ----
   const monthWord = { en: 'months', fr: 'mois' };
   const perAnnum = { en: '% p.a.', fr: '% par an' };
-  const alertText = {
-    en: 'This form is a working demo but is not yet connected to send real emails. See the comments in index.html for how to connect it to Formspree for free.',
-    fr: "Ce formulaire est une démonstration fonctionnelle mais n'est pas encore connecté pour envoyer de vrais e-mails. Consultez les commentaires dans index.html pour savoir comment le relier gratuitement à Formspree."
-  };
 
   let currentLang = localStorage.getItem('ukash-lang') || 'fr';
 
@@ -906,17 +901,41 @@
 
   applyLanguage(currentLang);
 
-  // ---- Contact form (front-end only for now) ----
-  // To make this form actually send you emails for free:
-  // 1. Create a free account at https://formspree.io
-  // 2. Create a new form there, copy the endpoint URL they give you
-  // 3. Replace the <form id="contactForm"> tag's attributes with:
-  //    <form id="contactForm" action="https://formspree.io/f/YOUR_ID" method="POST">
-  // 4. Remove the preventDefault() below, or remove this whole script block,
-  //    so the form submits normally to Formspree.
-  document.getElementById('contactForm').addEventListener('submit', function(e){
+  // ---- Contact form: real submission to Formspree ----
+  const successText = {
+    en: "Thank you! Your application has been received. Our team will follow up within one business day.",
+    fr: "Merci ! Votre demande a bien été reçue. Un membre de notre équipe vous recontactera sous un jour ouvré."
+  };
+  const errorText = {
+    en: "Something went wrong sending your application. Please try again, or contact us directly by phone or email.",
+    fr: "Une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer, ou contactez-nous directement par téléphone ou e-mail."
+  };
+
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', function(e){
     e.preventDefault();
-    alert(alertText[currentLang]);
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = currentLang === 'fr' ? 'Envoi en cours...' : 'Sending...';
+
+    fetch(contactForm.action, {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        contactForm.innerHTML = '<p style="color: var(--mint); font-size: 1.05rem; line-height:1.6;">' + successText[currentLang] + '</p>';
+      } else {
+        alert(errorText[currentLang]);
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    }).catch(() => {
+      alert(errorText[currentLang]);
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    });
   });
 </script>
 
