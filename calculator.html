@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Calculator — Ukash Limited</title>
+<meta name="description" content="Estimate your monthly loan repayment with Ukash Limited's free loan calculator.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html" class="logo"><span class="logo-mark">UK</span>Ukash Limited</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+        <li><a href="services.html" data-en="Services" data-fr="Services">Services</a></li>
+        <li><a href="calculator.html" class="active" data-en="Calculator" data-fr="Calculateur">Calculator</a></li>
+        <li><a href="about.html" data-en="About" data-fr="À propos">About</a></li>
+        <li><a href="faq.html" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
+        <li><a href="blog.html" data-en="Blog" data-fr="Blog">Blog</a></li>
+        <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="apply.html" class="btn btn-primary btn-sm nav-cta" data-en="Apply now" data-fr="Faire une demande">Apply now</a>
+        <div class="lang-toggle" role="group" aria-label="Language selector">
+          <button type="button" data-lang="fr">FR</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+      </div>
+    </nav>
+    <div class="mobile-panel">
+      <ul>
+        <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+        <li><a href="services.html" data-en="Services" data-fr="Services">Services</a></li>
+        <li><a href="calculator.html" class="active" data-en="Calculator" data-fr="Calculateur">Calculator</a></li>
+        <li><a href="about.html" data-en="About" data-fr="À propos">About</a></li>
+        <li><a href="faq.html" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
+        <li><a href="blog.html" data-en="Blog" data-fr="Blog">Blog</a></li>
+        <li><a href="apply.html" data-en="Apply now" data-fr="Faire une demande">Apply now</a></li>
+        <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow" data-en="Know before you apply" data-fr="Sachez avant de faire votre demande">Know before you apply</span>
+      <h1 data-en="Loan repayment calculator" data-fr="Calculateur de remboursement de prêt">Loan repayment calculator</h1>
+      <p data-en="Drag the sliders to estimate your monthly repayment. This is an estimate — your final offer depends on verification." data-fr="Faites glisser les curseurs pour estimer votre remboursement mensuel. Il s'agit d'une estimation — votre offre finale dépend de la vérification.">Drag the sliders to estimate your monthly repayment. This is an estimate — your final offer depends on verification.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="calc-panel">
+        <div class="calc-controls">
+          <div class="field">
+            <label><span data-en="Loan amount" data-fr="Montant du prêt">Loan amount</span> <span class="value mono" id="amountLabel">USD 2,000</span></label>
+            <input type="range" id="amountSlider" min="100" max="10000" step="100" value="2000" data-en-aria="Loan amount in US Dollars" data-fr-aria="Montant du prêt en dollars américains" aria-label="Loan amount in US Dollars">
+          </div>
+          <div class="field">
+            <label><span data-en="Repayment term" data-fr="Durée de remboursement">Repayment term</span> <span class="value mono" id="termLabel">12 months</span></label>
+            <input type="range" id="termSlider" min="3" max="36" step="1" value="12" data-en-aria="Repayment term in months" data-fr-aria="Durée de remboursement en mois" aria-label="Repayment term in months">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label><span data-en="Interest rate" data-fr="Taux d'intérêt">Interest rate</span> <span class="value mono" id="rateLabel">12.5% p.a.</span></label>
+            <input type="range" id="rateSlider" min="8" max="20" step="0.5" value="12.5" data-en-aria="Annual interest rate percentage" data-fr-aria="Taux d'intérêt annuel en pourcentage" aria-label="Annual interest rate percentage">
+          </div>
+        </div>
+        <div class="calc-result">
+          <span class="stamp" data-en="est. only" data-fr="estimation">est. only</span>
+          <span class="result-label" data-en="Estimated monthly repayment" data-fr="Remboursement mensuel estimé">Estimated monthly repayment</span>
+          <span class="result-amount mono" id="monthlyResult">USD 178</span>
+          <span class="result-sub" data-en="over the term you selected" data-fr="sur la durée choisie">over the term you selected</span>
+          <div class="result-breakdown">
+            <div><span data-en="Principal" data-fr="Capital">Principal</span><span class="mono" id="principalOut">USD 2,000</span></div>
+            <div><span data-en="Total interest" data-fr="Intérêts totaux">Total interest</span><span class="mono" id="interestOut">USD 131</span></div>
+            <div><span data-en="Total repayment" data-fr="Remboursement total">Total repayment</span><span class="mono" id="totalOut">USD 2,131</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:36px;">
+        <a href="apply.html" class="btn btn-primary" data-en="Apply for this amount" data-fr="Faire une demande pour ce montant">Apply for this amount</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">UK</span>Ukash Limited</a>
+      <ul class="footer-links">
+        <li><a href="services.html" data-en="Services" data-fr="Services">Services</a></li>
+        <li><a href="calculator.html" data-en="Calculator" data-fr="Calculateur">Calculator</a></li>
+        <li><a href="about.html" data-en="About" data-fr="À propos">About</a></li>
+        <li><a href="faq.html" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
+        <li><a href="blog.html" data-en="Blog" data-fr="Blog">Blog</a></li>
+        <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="copyright" data-en="© 2026 Ukash Limited. All rights reserved." data-fr="© 2026 Ukash Limited. Tous droits réservés.">© 2026 Ukash Limited. All rights reserved.</div>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+<script>
+  const monthWord = { en: 'months', fr: 'mois' };
+  const perAnnum = { en: '% p.a.', fr: '% par an' };
+
+  const amountSlider = document.getElementById('amountSlider');
+  const termSlider = document.getElementById('termSlider');
+  const rateSlider = document.getElementById('rateSlider');
+  const amountLabel = document.getElementById('amountLabel');
+  const termLabel = document.getElementById('termLabel');
+  const rateLabel = document.getElementById('rateLabel');
+  const monthlyResult = document.getElementById('monthlyResult');
+  const principalOut = document.getElementById('principalOut');
+  const interestOut = document.getElementById('interestOut');
+  const totalOut = document.getElementById('totalOut');
+
+  function formatUSD(n){ return 'USD ' + Math.round(n).toLocaleString('en-US'); }
+
+  function calculate(){
+    const lang = document.documentElement.getAttribute('lang') || 'fr';
+    const principal = parseFloat(amountSlider.value);
+    const months = parseInt(termSlider.value, 10);
+    const annualRate = parseFloat(rateSlider.value);
+    const monthlyRate = annualRate / 100 / 12;
+
+    let monthlyPayment;
+    if (monthlyRate === 0) {
+      monthlyPayment = principal / months;
+    } else {
+      monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+    }
+    const total = monthlyPayment * months;
+    const interest = total - principal;
+
+    amountLabel.textContent = formatUSD(principal);
+    termLabel.textContent = months + ' ' + monthWord[lang];
+    rateLabel.textContent = annualRate + perAnnum[lang];
+    monthlyResult.textContent = formatUSD(monthlyPayment);
+    principalOut.textContent = formatUSD(principal);
+    interestOut.textContent = formatUSD(interest);
+    totalOut.textContent = formatUSD(total);
+  }
+
+  [amountSlider, termSlider, rateSlider].forEach(el => el.addEventListener('input', calculate));
+  document.addEventListener('ukash:langchange', calculate);
+  document.addEventListener('DOMContentLoaded', calculate);
+</script>
+</body>
+</html>
