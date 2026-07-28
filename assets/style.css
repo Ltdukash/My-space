@@ -1,13 +1,13 @@
 :root{
-  --bg: #0F2E23;
-  --bg-2: #0B241C;
-  --surface: #163C2C;
-  --surface-2: #1D4736;
+  --bg: #17352C;
+  --bg-2: #0F251E;
+  --surface: #1F4437;
+  --surface-2: #285443;
   --text: #F3F0E6;
   --muted: #A9C2B4;
-  --gold: #D4A537;
-  --gold-bright: #E8BE55;
-  --mint: #79B892;
+  --gold: #DCC544;
+  --gold-bright: #EBDD70;
+  --mint: #67BE56;
   --line: rgba(243,240,230,0.12);
   --line-strong: rgba(243,240,230,0.22);
   --radius: 14px;
@@ -68,14 +68,10 @@ nav{
   flex-shrink:0;
 }
 .logo-mark{
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  background: linear-gradient(150deg, var(--gold), var(--gold-bright));
-  display:flex; align-items:center; justify-content:center;
-  color: var(--bg-2);
-  font-family:'IBM Plex Mono', monospace;
-  font-weight:600;
-  font-size: 0.8rem;
+  width: 34px; height: 34px;
+  display:block;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .nav-links{
   display:flex;
