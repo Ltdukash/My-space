@@ -348,6 +348,30 @@ input[type="range"]:focus-visible{ outline: 2px solid var(--mint); outline-offse
 .blog-card h3{ font-size: 1.08rem; margin: 12px 22px 10px; }
 .blog-card p{ color: var(--muted); font-size: 0.88rem; margin: 0 22px 22px; }
 
+/* Video card (blog) */
+.video-thumb{
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background:
+    repeating-linear-gradient(to bottom, transparent, transparent 19px, var(--line) 20px),
+    linear-gradient(150deg, var(--surface-2), var(--bg-2));
+  display:flex; align-items:center; justify-content:center;
+  border-bottom: 1px solid var(--line);
+}
+.video-thumb iframe, .video-thumb video{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+.video-play{
+  width: 62px; height: 62px; border-radius: 50%;
+  background: var(--gold); color: #16210F;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+}
+.video-play svg{ width: 24px; height: 24px; margin-left: 3px; }
+.video-soon{
+  position:absolute; left: 12px; bottom: 12px;
+  font-family:'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mint); border: 1.5px solid var(--mint); border-radius: 6px; padding: 4px 9px;
+}
+
 /* ---------- CONTACT / FORM ---------- */
 .contact-panel{
   display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 0;
